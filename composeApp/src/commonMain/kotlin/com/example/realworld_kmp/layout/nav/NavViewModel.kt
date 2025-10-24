@@ -1,20 +1,17 @@
 package com.example.realworld_kmp.layout.nav
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+
 
 class NavViewModel {
-  // Der aktuell ausgewählte Tab, standardmäßig HOME.
-  var selectedTab by mutableStateOf(NavTab.HOME)
-    private set // Kann nur innerhalb des ViewModels geändert werden.
 
-  /**
-   * Aktualisiert den ausgewählten Tab.
-   */
+  private val _selectedTab = MutableStateFlow(NavTab.HOME)
+  val selectedTab = _selectedTab.asStateFlow()
+
   fun setTab(newTab: NavTab) {
-    selectedTab = newTab
-    // Hier würde die eigentliche Navigation stattfinden (z.B. mit Voyager)
-    println("Navigation zu Tab: $newTab")
+    _selectedTab.update { newTab }
+    println("ViewModel state updated to tab: $newTab")
   }
 }

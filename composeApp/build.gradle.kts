@@ -46,19 +46,20 @@ kotlin {
       implementation(compose.foundation)
       implementation(compose.material3)
       implementation(compose.ui)
-      implementation(compose.components.resources)
-      implementation(compose.components.uiToolingPreview)
+      implementation(compose.components.uiToolingPreview) // Renamed from compose.uiTooling.preview
       implementation(libs.androidx.lifecycle.viewmodelCompose)
       implementation(libs.androidx.lifecycle.runtimeCompose)
       implementation(libs.kotlinx.datetime)
-      implementation(compose.material3)
       implementation(compose.materialIconsExtended)
+      implementation(libs.navigation.compose)
+      implementation(compose.components.resources)
     }
     commonTest.dependencies {
       implementation(libs.kotlin.test)
     }
     webMain.dependencies {
       implementation(npm("@js-joda/timezone", "2.22.0"))
+      
     }
   }
 }

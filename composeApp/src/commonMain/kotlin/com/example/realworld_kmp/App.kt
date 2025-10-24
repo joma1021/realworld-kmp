@@ -1,83 +1,80 @@
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.realworld_kmp.home.HomeScreen
 import com.example.realworld_kmp.layout.MainLayout
-import com.example.realworld_kmp.theme.titilliumWebFontFamily
-import kotlinx.datetime.TimeZone
-import org.jetbrains.compose.resources.DrawableResource
+import com.example.realworld_kmp.layout.nav.NavTab
+import com.example.realworld_kmp.layout.nav.NavViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 
-data class Country(val name: String, val zone: TimeZone, val image: DrawableResource)
+object AppRoutes {
+  const val HOME = "home"
+  const val LOGIN = "login"
+  const val REGISTER = "register"
+}
 
 
 @Composable
 @Preview
-fun App() {
-  MainLayout { innerPadding ->
+fun App(onNavHostReady: suspend (NavController) -> Unit = {}) {
+  val navController = rememberNavController()
+  // Erstellen Sie die ViewModel-Instanz hier und geben Sie sie weiter
+  val navViewModel = remember { NavViewModel() }
 
-    Column(
-      modifier = Modifier
-        .padding(innerPadding)
-        .fillMaxSize(),
-    ) {
-      Box(
-        modifier = Modifier
-          .fillMaxWidth()
-          .background(MaterialTheme.colorScheme.primary),
-        contentAlignment = Alignment.Center
-      ) {
-        Column(
-          horizontalAlignment = Alignment.CenterHorizontally,
-          verticalArrangement = Arrangement.Center,
-          modifier = Modifier
-            .padding(vertical = 32.dp)
-        ) {
-          Text(
-            text = "conduit",
-            style = TextStyle(
-              fontFamily = titilliumWebFontFamily(),
-              color = Color.White,
-              fontSize = 56.sp,
-              fontWeight = FontWeight.W700,
-              shadow = Shadow(
-                color = Color.Gray,
-                offset = Offset(0f, 0.2f),
-                blurRadius = 4f
-              )
-            )
-          )
-          Text(
-            text = "A place to share your knowledge",
-            style = TextStyle(
-              fontFamily = titilliumWebFontFamily(),
-              color = Color.White,
-              fontSize = 24.sp,
-              fontWeight = FontWeight.W300,
-            )
-          )
-        }
+  // Beobachten Sie den ausgewählten Tab aus dem ViewModel.
+  // Wenn sich der Tab im ViewModel ändert, wird dieser Code neu ausgeführt.
+  val selectedTab by navViewModel.selectedTab.collectAsState(initial = navViewModel.selectedTab.value)
 
-
-      }
-
+  // Diese Logik wird ausgelöst, wenn sich `selectedTab` ändert
+  LaunchedEffect(selectedTab) {
+    val route = when (selectedTab) {
+      NavTab.HOME -> AppRoutes.HOME
+      NavTab.SIGN_IN -> AppRoutes.LOGIN
+      NavTab.SIGN_UP -> AppRoutes.REGISTER
     }
+    navController.navigate(route) { launchSingleTop = true }
+    onNavHostReady(navController)
+  }
+
+
+  MainLayout(navViewModel = navViewModel) { innerPadding ->
+    NavHost(
+      navController = navController,
+      startDestination = AppRoutes.HOME,
+      modifier = Modifier.padding(innerPadding)
+    ) {
+      composable(AppRoutes.HOME) {
+        HomeScreen()
+      }
+      composable(AppRoutes.LOGIN) {
+
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+          Text("Login Screen")
+        }
+      }
+      composable(AppRoutes.REGISTER) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+          Text("Register Screen")
+        }
+      }
+    }
+
+
   }
 }
+
+
 

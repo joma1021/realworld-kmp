@@ -3,6 +3,8 @@ package com.example.realworld_kmp.layout
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import com.example.realworld_kmp.layout.nav.NavBar
 import com.example.realworld_kmp.layout.nav.NavViewModel
@@ -15,28 +17,22 @@ import com.example.realworld_kmp.theme.RealworldTheme
  */
 @Composable
 fun MainLayout(
-  // Optional: Übergeben Sie ein ViewModel, um es testbar zu machen.
-  // `remember { NavViewModel() }` erstellt eine Instanz, die über den Lebenszyklus des Composables erhalten bleibt.
   navViewModel: NavViewModel = remember { NavViewModel() },
   content: @Composable (paddingValues: PaddingValues) -> Unit
 ) {
-  // Holen Sie den aktuell ausgewählten Tab direkt aus dem ViewModel.
-  val selectedTab = navViewModel.selectedTab
-
+  val selectedTab by navViewModel.selectedTab.collectAsState()
   RealworldTheme {
     Scaffold(
       topBar = {
         NavBar(
           selectedTab = selectedTab,
           onTabSelected = { newTab ->
-            // Die Logik, was bei einem Klick passiert, wird hier definiert,
-            // genau wie im `onPressed` der AppBar in Flutter.
+
             navViewModel.setTab(newTab)
           }
         )
       }
     ) { innerPadding ->
-      // Der übergebene Inhalt wird hier aufgerufen.
       content(innerPadding)
     }
   }

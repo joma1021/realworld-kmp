@@ -21,8 +21,7 @@ fun RealworldTheme(
   darkTheme: Boolean = isSystemInDarkTheme(), // Automatischer Dark-Mode-Support
   content: @Composable () -> Unit
 ) {
-  // Derzeit wird immer das helle Farbschema verwendet.
-  // Sie können später ein `darkColorScheme` hinzufügen.
+
   val colorScheme = LightColorScheme
 
   MaterialTheme(
