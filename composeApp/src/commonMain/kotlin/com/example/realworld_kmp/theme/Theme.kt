@@ -1,6 +1,5 @@
 package com.example.realworld_kmp.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -17,8 +16,7 @@ private val LightColorScheme = lightColorScheme(
   )
 
 @Composable
-fun RealworldTheme(
-  darkTheme: Boolean = isSystemInDarkTheme(), // Automatischer Dark-Mode-Support
+fun RealWorldTheme(
   content: @Composable () -> Unit
 ) {
 
