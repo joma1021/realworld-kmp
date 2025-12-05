@@ -19,8 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.realworld_kmp.theme.titilliumWebFontFamily
 
 // Ein Enum, das die verschiedenen Tabs repräsentiert, analog zu NavTab in Flutter.
 enum class NavTab {
@@ -44,10 +42,11 @@ fun NavBar(
       ) {
         Text(
           text = "conduit",
-          fontSize = 20.sp,
-          color = MaterialTheme.colorScheme.primary, // Farbe aus Ihrem Theme
-          fontWeight = FontWeight.W900,
-          fontFamily = titilliumWebFontFamily(),
+          style = MaterialTheme.typography.headlineSmall.copy(
+            color = MaterialTheme.colorScheme.primary,
+            fontWeight = FontWeight.W900,
+          )
+
         )
       }
     },
@@ -55,21 +54,18 @@ fun NavBar(
     actions = {
       NavTextButton(
         name = "Home",
-        tab = NavTab.HOME,
         isSelected = (selectedTab == NavTab.HOME),
         onClick = { onTabSelected(NavTab.HOME) },
         icon = Icons.Default.Home
       )
       NavTextButton(
         name = "Sign in",
-        tab = NavTab.SIGN_IN,
         isSelected = (selectedTab == NavTab.SIGN_IN),
         onClick = { onTabSelected(NavTab.SIGN_IN) },
         icon = Icons.AutoMirrored.Filled.Login
       )
       NavTextButton(
         name = "Sign up",
-        tab = NavTab.SIGN_UP,
         isSelected = (selectedTab == NavTab.SIGN_UP),
         onClick = { onTabSelected(NavTab.SIGN_UP) }
       )
@@ -89,7 +85,6 @@ fun NavBar(
 @Composable
 private fun NavTextButton(
   name: String,
-  tab: NavTab,
   isSelected: Boolean,
   onClick: () -> Unit,
   icon: ImageVector? = null
@@ -100,7 +95,9 @@ private fun NavTextButton(
         Icon(
           imageVector = icon,
           contentDescription = name, // Wichtig für Barrierefreiheit
-          tint = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
+          tint = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(
+            alpha = 0.3f
+          )
         )
         // Fügen Sie einen kleinen Abstand zwischen Icon und Text hinzu
         Spacer(modifier = Modifier.width(4.dp))
@@ -108,7 +105,9 @@ private fun NavTextButton(
       Text(
         text = name,
         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-        color = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
+        color = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(
+          alpha = 0.3f
+        )
       )
     }
 

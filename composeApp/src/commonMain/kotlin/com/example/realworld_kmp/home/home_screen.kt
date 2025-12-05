@@ -15,11 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.realworld_kmp.theme.titilliumWebFontFamily
 
 
 @Composable
@@ -43,12 +39,8 @@ fun HomeScreen() {
       ) {
         Text(
           text = "conduit",
-          style = TextStyle(
-            fontFamily = titilliumWebFontFamily(),
-            color = Color.White,
-            fontSize = 56.sp,
-            fontWeight = FontWeight.W700,
-            shadow = Shadow(
+          style = MaterialTheme.typography.headlineLarge.copy(
+            color = Color.White, shadow = Shadow(
               color = Color.Gray,
               offset = Offset(0f, 0.2f),
               blurRadius = 4f
@@ -57,11 +49,8 @@ fun HomeScreen() {
         )
         Text(
           text = "A place to share your knowledge",
-          style = TextStyle(
-            fontFamily = titilliumWebFontFamily(),
+          style = MaterialTheme.typography.headlineMedium.copy(
             color = Color.White,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.W300,
           )
         )
       }

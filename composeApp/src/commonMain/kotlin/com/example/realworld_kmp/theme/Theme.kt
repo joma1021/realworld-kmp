@@ -24,6 +24,7 @@ fun RealWorldTheme(
 
   MaterialTheme(
     colorScheme = colorScheme,
-    content = content
+    content = content,
+    typography = appTypography(),
   )
 }

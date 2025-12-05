@@ -30,6 +30,7 @@ kotlin {
     binaries.executable()
   }
 
+
   @OptIn(ExperimentalWasmDsl::class)
   wasmJs {
     browser()
@@ -59,7 +60,7 @@ kotlin {
     }
     webMain.dependencies {
       implementation(npm("@js-joda/timezone", "2.22.0"))
-      
+
     }
   }
 }
