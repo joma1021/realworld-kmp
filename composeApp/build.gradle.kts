@@ -6,6 +6,7 @@ plugins {
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
+  kotlin("plugin.serialization") version "2.1.0"
 }
 
 kotlin {
@@ -41,6 +42,11 @@ kotlin {
     androidMain.dependencies {
       implementation(libs.ui.tooling.preview)
       implementation(libs.androidx.activity.compose)
+      implementation(libs.ktor.client.okhttp)
+    }
+
+    iosMain.dependencies {
+      implementation(libs.ktor.client.darwin) // iOS Engine
     }
     commonMain.dependencies {
       implementation(libs.runtime)
@@ -54,13 +60,16 @@ kotlin {
       implementation(libs.material.icons.extended)
       implementation(libs.navigation.compose)
       implementation(libs.components.resources)
+      implementation(libs.ktor.client.core)
+      implementation(libs.ktor.client.content.negotiation)
+      implementation(libs.ktor.serialization.kotlinx.json)
     }
     commonTest.dependencies {
       implementation(libs.kotlin.test)
     }
     webMain.dependencies {
       implementation(npm("@js-joda/timezone", "2.22.0"))
-
+      implementation(libs.ktor.client.js)
     }
   }
 }

@@ -1,4 +1,4 @@
-package com.example.realworld_kmp.layout.nav
+package com.example.realworld_kmp.shared.navigation
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

@@ -1,4 +1,4 @@
-package com.example.realworld_kmp.layout.nav
+package com.example.realworld_kmp.shared.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Login

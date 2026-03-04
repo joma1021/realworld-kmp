@@ -1,4 +1,4 @@
-package com.example.realworld_kmp.layout.nav
+package com.example.realworld_kmp.shared.navigation
 
 object AppRoutes {
   const val HOME = "home"

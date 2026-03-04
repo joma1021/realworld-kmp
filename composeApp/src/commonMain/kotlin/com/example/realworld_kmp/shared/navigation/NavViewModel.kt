@@ -1,4 +1,4 @@
-package com.example.realworld_kmp.layout.nav
+package com.example.realworld_kmp.shared.navigation
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

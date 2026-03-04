@@ -1,4 +1,4 @@
-package com.example.realworld_kmp.theme
+package com.example.realworld_kmp.layout.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
