@@ -39,21 +39,21 @@ kotlin {
 
   sourceSets {
     androidMain.dependencies {
-      implementation(compose.preview)
+      implementation(libs.ui.tooling.preview)
       implementation(libs.androidx.activity.compose)
     }
     commonMain.dependencies {
-      implementation(compose.runtime)
-      implementation(compose.foundation)
-      implementation(compose.material3)
-      implementation(compose.ui)
-      implementation(compose.components.uiToolingPreview) // Renamed from compose.uiTooling.preview
+      implementation(libs.runtime)
+      implementation(libs.foundation)
+      implementation(libs.material3)
+      implementation(libs.ui)
+      implementation(libs.ui.tooling.preview) // Renamed from compose.uiTooling.preview
       implementation(libs.androidx.lifecycle.viewmodelCompose)
       implementation(libs.androidx.lifecycle.runtimeCompose)
       implementation(libs.kotlinx.datetime)
-      implementation(compose.materialIconsExtended)
+      implementation(libs.material.icons.extended)
       implementation(libs.navigation.compose)
-      implementation(compose.components.resources)
+      implementation(libs.components.resources)
     }
     commonTest.dependencies {
       implementation(libs.kotlin.test)
@@ -93,6 +93,6 @@ android {
 }
 
 dependencies {
-  debugImplementation(compose.uiTooling)
+  debugImplementation(libs.ui.tooling)
 }
 

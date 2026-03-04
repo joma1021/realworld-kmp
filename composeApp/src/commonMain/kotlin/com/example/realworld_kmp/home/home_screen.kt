@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun HomeScreen() {
   Column(
-
     modifier = Modifier
       .fillMaxSize(),
   ) {

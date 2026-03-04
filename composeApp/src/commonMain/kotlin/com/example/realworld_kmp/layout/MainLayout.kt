@@ -7,18 +7,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import com.example.realworld_kmp.layout.nav.NavBar
+import com.example.realworld_kmp.layout.nav.NavTab
 import com.example.realworld_kmp.layout.nav.NavViewModel
 import com.example.realworld_kmp.theme.RealWorldTheme
 
-/**
- * Eine wiederverwendbare Layout-Struktur, analog zum BaseScaffold aus Flutter.
- *
- * @param content Der Inhalt der Seite, der innerhalb des Layouts angezeigt werden soll.
- */
 @Composable
 fun MainLayout(
   navViewModel: NavViewModel = remember { NavViewModel() },
+  onTabSelected: (NavTab) -> Unit, //
   content: @Composable (paddingValues: PaddingValues) -> Unit
+
 ) {
   val selectedTab by navViewModel.selectedTab.collectAsState()
   RealWorldTheme {
@@ -27,8 +25,7 @@ fun MainLayout(
         NavBar(
           selectedTab = selectedTab,
           onTabSelected = { newTab ->
-
-            navViewModel.setTab(newTab)
+            onTabSelected(newTab)
           }
         )
       }

@@ -10,7 +10,7 @@ class NavViewModel {
   private val _selectedTab = MutableStateFlow(NavTab.HOME)
   val selectedTab = _selectedTab.asStateFlow()
 
-  fun setTab(newTab: NavTab) {
+  fun selectTab(newTab: NavTab) {
     _selectedTab.update { newTab }
     println("ViewModel state updated to tab: $newTab")
   }
