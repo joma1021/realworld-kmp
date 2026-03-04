@@ -34,10 +34,7 @@ fun main() {
       App(
         onNavHostReady = { it.bindToBrowserNavigation() }
       )
-
-//
-
-
+      
     }
   }
 }
