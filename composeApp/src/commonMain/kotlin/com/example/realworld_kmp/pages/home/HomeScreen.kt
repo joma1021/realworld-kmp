@@ -1,6 +1,5 @@
 package com.example.realworld_kmp.pages.home
 
-import NetworkModule
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,21 +18,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.unit.dp
-import com.example.realworld_kmp.pages.home.state.HomeViewModel
-import com.example.realworld_kmp.shared.repository.ArticleRepository
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.realworld_kmp.pages.home.viewModel.HomeViewModel
+import com.example.realworld_kmp.pages.home.viewModel.homeViewModelFactory
 import com.example.realworld_kmp.shared.state.UiState
 
 
 @Composable
 fun HomeScreen(
-  viewModel: HomeViewModel = remember { HomeViewModel(ArticleRepository(NetworkModule.client)) }
+  viewModel: HomeViewModel = viewModel(factory = homeViewModelFactory)
 ) {
   val articleState by viewModel.state.collectAsState()
 

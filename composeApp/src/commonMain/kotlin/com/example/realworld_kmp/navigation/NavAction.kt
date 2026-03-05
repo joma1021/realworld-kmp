@@ -1,4 +1,4 @@
-package com.example.realworld_kmp.shared.navigation
+package com.example.realworld_kmp.navigation
 
 import androidx.navigation.NavController
 

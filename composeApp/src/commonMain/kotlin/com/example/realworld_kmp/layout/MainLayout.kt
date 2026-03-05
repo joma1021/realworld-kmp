@@ -7,9 +7,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import com.example.realworld_kmp.layout.theme.RealWorldTheme
-import com.example.realworld_kmp.shared.navigation.NavBar
-import com.example.realworld_kmp.shared.navigation.NavTab
-import com.example.realworld_kmp.shared.navigation.NavViewModel
+import com.example.realworld_kmp.navigation.NavBar
+import com.example.realworld_kmp.navigation.NavTab
+import com.example.realworld_kmp.navigation.NavViewModel
 
 @Composable
 fun MainLayout(

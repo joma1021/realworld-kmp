@@ -1,7 +1,10 @@
-package com.example.realworld_kmp.pages.home.state
+package com.example.realworld_kmp.pages.home.viewModel
 
+import NetworkModule
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.realworld_kmp.shared.models.Article
 import com.example.realworld_kmp.shared.repository.ArticleRepository
 import com.example.realworld_kmp.shared.state.UiState
@@ -30,3 +33,11 @@ class HomeViewModel(private val repository: ArticleRepository) : ViewModel() {
     }
   }
 }
+
+val homeViewModelFactory = viewModelFactory {
+  initializer {
+    HomeViewModel(repository = getArticleRepository())
+  }
+}
+
+fun getArticleRepository(): ArticleRepository = ArticleRepository(NetworkModule.client);

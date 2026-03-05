@@ -15,11 +15,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.realworld_kmp.layout.MainLayout
+import com.example.realworld_kmp.navigation.AppRoutes
+import com.example.realworld_kmp.navigation.NavAction
+import com.example.realworld_kmp.navigation.NavTab
+import com.example.realworld_kmp.navigation.NavViewModel
 import com.example.realworld_kmp.pages.home.HomeScreen
-import com.example.realworld_kmp.shared.navigation.AppRoutes
-import com.example.realworld_kmp.shared.navigation.NavAction
-import com.example.realworld_kmp.shared.navigation.NavTab
-import com.example.realworld_kmp.shared.navigation.NavViewModel
 
 
 @Composable
